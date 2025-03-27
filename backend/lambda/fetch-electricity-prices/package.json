@@ -1,0 +1,10 @@
+{
+    "name": "fetch-electricity-prices",
+    "version": "1.0.0",
+    "description": "Lambda function to fetch electricity prices",
+    "main": "index.mjs",
+    "type": "module",
+    "dependencies": {
+      "node-fetch": "^3.3.2"
+    }
+  }
