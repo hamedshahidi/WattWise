@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-export const handler = async (event) => {
+export const fetchElectricityPrices = async (event) => {
   try {
     const todayResponse = await fetch('https://api.spot-hinta.fi/today');
     if (!todayResponse.ok) {
