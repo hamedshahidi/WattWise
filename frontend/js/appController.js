@@ -1,7 +1,6 @@
 import { CACHE_KEY_TODAY, CACHE_KEY_TOMORROW } from './constants.js';
-import { getCachedPrices } from './priceCache.js';
+import { getCachedPrices, saveToCache } from './priceCache.js';
 import { fetchElectricityPrices } from './priceFetcher.js';
-
 // import { renderPrices } from './renderController.js'; // placeholder
 
 /**
@@ -9,17 +8,30 @@ import { fetchElectricityPrices } from './priceFetcher.js';
  * then triggering UI rendering.
  */
 export async function initApp() {
-  const today = getCachedPrices(CACHE_KEY_TODAY);
-  const tomorrow = getCachedPrices(CACHE_KEY_TOMORROW);
+  let today = getCachedPrices(CACHE_KEY_TODAY);
+  let tomorrow = getCachedPrices(CACHE_KEY_TOMORROW);
 
   if (today && tomorrow) {
     console.log('✅ Using cached price data');
     renderPrices({ today, tomorrow });
-  } else {
-    console.log('🔄 Fetching electricity prices from Lambda...');
-    const data = await fetchElectricityPrices();
-    renderPrices(data);
+    return;
   }
+
+  console.log('🔄 Fetching electricity prices from Lambda...');
+  const fetched = await fetchElectricityPrices();
+
+  // Merge with valid cached values to avoid overwriting good data
+  if (!today && fetched.today) {
+    today = fetched.today;
+    saveToCache(CACHE_KEY_TODAY, today);
+  }
+
+  if (!tomorrow && fetched.tomorrow) {
+    tomorrow = fetched.tomorrow;
+    saveToCache(CACHE_KEY_TOMORROW, tomorrow);
+  }
+
+  renderPrices({ today, tomorrow });
 }
 
 // Temporary mock rendering logic
@@ -28,5 +40,4 @@ function renderPrices(data) {
   // TODO: replace with actual UI update via renderController.js
 }
 
-// Run app on page load
 window.addEventListener('DOMContentLoaded', initApp);
