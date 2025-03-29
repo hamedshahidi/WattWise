@@ -6,6 +6,32 @@
     <title>WattWise</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js (ESM Module) -->
+    <script type="module">
+        import {
+          Chart,
+          LineController,
+          LineElement,
+          PointElement,
+          LinearScale,
+          Title,
+          Tooltip,
+          CategoryScale
+        } from 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/+esm';
+
+        Chart.register(
+          LineController,
+          LineElement,
+          PointElement,
+          LinearScale,
+          CategoryScale,
+          Title,
+          Tooltip
+        );
+
+        window.Chart = Chart;
+      </script>
+
 
     <!-- Font Awesome -->
     <link
@@ -52,6 +78,10 @@
     </div>
     <!-- end .container -->
 
+    <!-- Price chart -->
+    <canvas id="priceChart" class="w-full h-64"></canvas>
+    <!-- end price chart -->
+
     <!-- Bottom nav (fixed) -->
     <nav
       class="fixed bottom-0 left-0 w-full bg-gray-800 border-t border-gray-700"
@@ -74,6 +104,5 @@
 
     <!-- Main script -->
     <script type="module" src="js/appController.js"></script>
-
   </body>
 </html>
