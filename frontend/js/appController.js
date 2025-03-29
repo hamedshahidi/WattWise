@@ -1,7 +1,7 @@
-import { CACHE_KEY_TODAY, CACHE_KEY_TOMORROW } from './constants.js';
-import { getCachedPrices, saveToCache } from './priceCache.js';
-import { fetchElectricityPrices } from './priceFetcher.js';
-// import { renderPrices } from './renderController.js'; // placeholder
+import { CACHE_KEY_TODAY, CACHE_KEY_TOMORROW } from "./constants.js";
+import { getCachedPrices, saveToCache } from "./priceCache.js";
+import { fetchElectricityPrices } from "./priceFetcher.js";
+import { renderPrices } from "./renderController.js";
 
 /**
  * Initializes the app by loading price data (cached or remote),
@@ -12,12 +12,12 @@ export async function initApp() {
   let tomorrow = getCachedPrices(CACHE_KEY_TOMORROW);
 
   if (today && tomorrow) {
-    console.log('✅ Using cached price data');
+    console.log("✅ Using cached price data");
     renderPrices({ today, tomorrow });
     return;
   }
 
-  console.log('🔄 Fetching electricity prices from Lambda...');
+  console.log("🔄 Fetching electricity prices from Lambda...");
   const fetched = await fetchElectricityPrices();
 
   // Merge with valid cached values to avoid overwriting good data
@@ -34,10 +34,4 @@ export async function initApp() {
   renderPrices({ today, tomorrow });
 }
 
-// Temporary mock rendering logic
-function renderPrices(data) {
-  console.log('⚡ Price Data:', data);
-  // TODO: replace with actual UI update via renderController.js
-}
-
-window.addEventListener('DOMContentLoaded', initApp);
+window.addEventListener("DOMContentLoaded", initApp);
