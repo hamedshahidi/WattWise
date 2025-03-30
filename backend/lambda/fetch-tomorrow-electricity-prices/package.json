@@ -1,7 +1,7 @@
 {
-    "name": "fetch-electricity-prices",
+    "name": "fetch-tomorrow-electricity-prices",
     "version": "1.0.0",
-    "description": "Lambda function to fetch electricity prices",
+    "description": "Lambda function to fetch tomorrow's electricity prices",
     "main": "index.mjs",
     "type": "module",
     "dependencies": {
