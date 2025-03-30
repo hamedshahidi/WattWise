@@ -21,12 +21,12 @@ export async function initApp() {
   const fetched = await fetchElectricityPrices();
 
   // Merge with valid cached values to avoid overwriting good data
-  if (!today && fetched.today) {
+  if (!today && Array.isArray(fetched.today) && fetched.today.length > 0) {
     today = fetched.today;
     saveToCache(CACHE_KEY_TODAY, today);
   }
 
-  if (!tomorrow && fetched.tomorrow) {
+  if (!tomorrow && Array.isArray(fetched.tomorrow) && fetched.tomorrow.length > 0) {
     tomorrow = fetched.tomorrow;
     saveToCache(CACHE_KEY_TOMORROW, tomorrow);
   }
