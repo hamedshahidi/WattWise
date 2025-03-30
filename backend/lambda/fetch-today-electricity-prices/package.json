@@ -1,0 +1,10 @@
+{
+    "name": "fetch-today-electricity-prices",
+    "version": "1.0.0",
+    "description": "Lambda function to fetch today's electricity prices",
+    "main": "index.mjs",
+    "type": "module",
+    "dependencies": {
+      "node-fetch": "^3.3.2"
+    }
+  }
