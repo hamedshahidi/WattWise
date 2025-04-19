@@ -34,4 +34,4 @@ Add any other context about the problem here.
 
 ---
 
-For more details, please refer to our [Contributing Guide](../CONTRIBUTING.md). 
+For more details, please refer to our [Contributing Guide](../../CONTRIBUTING.md). 

@@ -25,4 +25,4 @@ Add any other context or information that might be necessary to complete the tas
 
 ---
 
-For more details, please refer to our [Contributing Guide](../CONTRIBUTING.md). 
+For more details, please refer to our [Contributing Guide](../../CONTRIBUTING.md). 

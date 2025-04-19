@@ -22,4 +22,4 @@ Add any other context or screenshots about the feature request here.
 
 ---
 
-For more details, please refer to our [Contributing Guide](../CONTRIBUTING.md). 
+For more details, please refer to our [Contributing Guide](../../CONTRIBUTING.md). 
